@@ -1,0 +1,66 @@
+<Page x:Class="Anchor_Final.Views.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Behaviors="using:Template10.Behaviors"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Anchor_Final.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:Anchor_Final.ViewModels" mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:SettingsPageViewModel />
+    </Page.DataContext>
+
+    <Grid Background="#FF006064">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!--  #region content  -->
+
+        <Pivot Grid.Row="1">
+            <!-- DataContext="{Binding SettingsPartViewModel}" Header="Settings">
+                <ScrollViewer Margin="0,12,-12,0" HorizontalContentAlignment="Left" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock>Editor Font Size: </TextBlock>
+                        <ListBox x:Name="fontPicker">
+                            <ListBoxItem>Small</ListBoxItem>
+                            <ListBoxItem>Medium</ListBoxItem>
+                            <ListBoxItem>Large</ListBoxItem>
+                        </ListBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </>-->
+            <PivotItem Header="About">
+                <Grid DataContext="{Binding AboutPartViewModel}">
+                    <Border HorizontalAlignment="Right" VerticalAlignment="Top"
+                            BorderBrush="DimGray" BorderThickness="1"
+                            IsHitTestVisible="False">
+                        <Border.Background>
+                            <SolidColorBrush Color="{ThemeResource SystemAccentColor}" />
+                        </Border.Background>
+                        <Image Margin="12" Source="{Binding Logo}" Stretch="None" />
+                    </Border>
+                    <StackPanel>
+                        <TextBlock Margin="0,0,0,12" FontSize="24" Text="{Binding DisplayName}" />
+                        <TextBlock Text="{Binding Publisher}" />
+                        <TextBlock>
+                            <Run>Version</Run>
+                            <Run Text="{Binding Version}" />
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </PivotItem>
+        </Pivot>
+
+        <!--  #endregion  -->
+
+    </Grid>
+
+</Page>
+

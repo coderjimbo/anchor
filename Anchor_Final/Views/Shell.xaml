@@ -1,0 +1,71 @@
+<Page x:Class="Anchor_Final.Views.Shell"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Controls="using:Template10.Controls"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Anchor_Final.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:views="using:Anchor_Final.Views" x:Name="ThisPage"
+      mc:Ignorable="d">
+
+    <Grid Background="#FF006064" x:Name="RootGrid">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="NormalVisualState" />
+                <VisualState x:Name="BusyVisualState">
+                    <VisualState.Setters>
+                        <Setter Target="BusyRing.(ProgressRing.IsActive)" Value="True" />
+                        <Setter Target="BusyScreen.(UIElement.Visibility)" Value="Visible" />
+                        <Setter Target="MyHamburgerMenu.(UIElement.IsEnabled)" Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Controls:HamburgerMenu x:Name="MyHamburgerMenu"
+                HamburgerBackground="#FF00838f"
+                HamburgerForeground="White"
+                NavAreaBackground="#FF2B2B2B"
+                NavButtonCheckedBackground="#FF003d40"
+                NavButtonBackground="#FF2b2b2b"
+                SecondarySeparator="#00FFFFFF"
+                NavButtonForeground="White" 
+                >
+            <Controls:HamburgerMenu.PrimaryButtons>
+                <Controls:HamburgerButtonInfo PageType="views:MainPage" ClearHistory="True">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <SymbolIcon Symbol="Home" Width="48" Height="48" />
+                        <TextBlock Text="Home" Margin="12, 0, 0, 0" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Controls:HamburgerButtonInfo>
+            </Controls:HamburgerMenu.PrimaryButtons>
+
+            <Controls:HamburgerMenu.SecondaryButtons>
+                <Controls:HamburgerButtonInfo PageType="views:SettingsPage">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <SymbolIcon Symbol="Help"  Width="48" Height="48"  />
+                        <TextBlock Text="About" Margin="12, 0, 0, 0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Controls:HamburgerButtonInfo>
+            </Controls:HamburgerMenu.SecondaryButtons>
+
+        </Controls:HamburgerMenu>
+
+        <Grid x:Name="BusyScreen" Background="{StaticResource ModalBackground}" Visibility="Collapsed" x:DeferLoadStrategy="Lazy">
+            <Viewbox Height="32">
+                <StackPanel Orientation="Horizontal">
+                    <ProgressRing x:Name="BusyRing" Width="24"
+                                  Height="24" Margin="12,0"
+                                  Foreground="White" IsActive="False" />
+                    <TextBlock x:Name="BusyText" VerticalAlignment="Center" Foreground="White" />
+                </StackPanel>
+            </Viewbox>
+        </Grid>
+
+    </Grid>
+
+</Page>
+
